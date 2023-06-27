@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 interface User {
@@ -6,12 +7,24 @@ interface User {
   password: string;
 }
 
-function LoginPage() {
+interface LoginPageProps {
+  handleLogin: (token: string) => void;
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ handleLogin }) => {
   const [user, setUser] = useState<User>({ username: '', password: '' });
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(`Logging in with username: ${user.username} and password: ${user.password}`);
+    
+    // Call the handleLogin function with a dummy token. 
+    // Replace "dummy-token" with the actual token you get from your server upon successful login
+    handleLogin("dummy-token");
+
+    // Redirect to main page
+    navigate('/');
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,0 +1,57 @@
+@keyframes colorChange {
+  0%   { background-color: #000080; }
+  25%  { background-color: #004c99; }
+  40%  { background-color: #007399; }
+  55%  { background-color: #008080; }
+  70%  { background-color: #004d00; }
+  85%  { background-color: #003300; }
+  100% { background-color: #000080; }
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  animation-name: colorChange;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  border-radius: 50px;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li.logout {
+  float: right;
+}
+
+.navbar li a, .navbar li .logout button {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.navbar li a:hover, .navbar li .logout button:hover {
+  background-color: #111;
+  border-radius: 50%;
+}
+
+.navbar-list {
+  list-style-type: none;
+}
+
+.logout {
+  margin-top: 10px;
+  margin-left:15px;
+}
+
