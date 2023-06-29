@@ -18,7 +18,7 @@ export const Product: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   
-  const { addToCart } = useContext(CartContext); // Get addToCart function from CartContext
+  const { addToCart } = useContext(CartContext); 
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)

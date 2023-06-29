@@ -11,7 +11,7 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ handleLogout, isAuthenticated }) => {
   const { cart } = useContext(CartContext);
 
-  // Calculate the total quantity of items in the cart
+
   const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
   return (

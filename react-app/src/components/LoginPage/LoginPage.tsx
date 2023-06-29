@@ -19,11 +19,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ handleLogin }) => {
     event.preventDefault();
     console.log(`Logging in with username: ${user.username} and password: ${user.password}`);
     
-    // Call the handleLogin function with a dummy token. 
-    // Replace "dummy-token" with the actual token you get from your server upon successful login
+
     handleLogin("dummy-token");
 
-    // Redirect to main page
+
     navigate('/');
   };
 
