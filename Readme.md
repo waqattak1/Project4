@@ -16,5 +16,3 @@
 - link to trello board: https://trello.com/b/LOMbhuyY/project4-ecommerce-app
 
 ## Planned future enhancements
-
-

@@ -1,25 +1,3 @@
-// import React from 'react';
-
-// export interface CartItem {
-//   title: string;
-//   description: string;
-//   price: number;
-//   image: string;
-//   quantity: number;
-// }
-
-// export interface CartContextProps {
-//   cart: CartItem[];
-//   addToCart: (item: CartItem) => void;
-//   removeFromCart: (title: string) => void;
-// }
-
-// export const CartContext = React.createContext<CartContextProps>({
-//   cart: [],
-//   addToCart: () => {},
-//   removeFromCart: () => {}
-// });
-
 import React, { useState, useEffect } from "react";
 
 export interface CartItem {
@@ -34,6 +12,7 @@ export interface CartContextProps {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (title: string) => void;
+  clearCart: () => void; // added clearCart method
   totalItems: number;
   totalPrice: number;
 }
@@ -42,12 +21,13 @@ export const CartContext = React.createContext<CartContextProps>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  clearCart: () => {}, // default implementation
   totalItems: 0,
   totalPrice: 0,
 });
 
 export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(() => JSON.parse(localStorage.getItem('cart') || "[]"));
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
@@ -64,8 +44,12 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }
     setTotalPrice(price);
   }, [cart]);
 
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
   const addToCart = (item: CartItem) => {
-    setCart([...cart, item]);
+    setCart(prevCart => [...prevCart, item]);
   };
 
   const removeFromCart = (title: string) => {
@@ -73,9 +57,13 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }
     setCart(newCart);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, totalItems, totalPrice }}
+      value={{ cart, addToCart, removeFromCart, clearCart, totalItems, totalPrice }} // added clearCart to the provided values
     >
       {children}
     </CartContext.Provider>
