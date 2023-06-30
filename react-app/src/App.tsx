@@ -8,7 +8,7 @@ import { CartProvider } from "./contexts/CartProvider";
 import { Cart } from './components/Cart/Cart';
 import { useState, useEffect } from 'react';
 import Checkout from "./components/Checkout/Checkout";
-// app file
+
 
 
 function App() {
