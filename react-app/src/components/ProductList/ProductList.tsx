@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./ProductList.css";
 
 interface Product {
-  id: number; 
+  id: number; // Assuming your product has an id
   title: string;
   image: string;
   description: string;
