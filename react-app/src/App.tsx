@@ -1,55 +1,35 @@
+// App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import ProductList from "./components/ProductList/ProductList";
-import { Product } from "./components/Product/Product";
+import Product from "./components/Product/Product";
 import LoginPage from "./components/LoginPage/LoginPage";
+import SignUpPage from "./components/SignUpPage/SignUpPage";
 import NavBar from "./components/NavBar/NavBar";
 import { CartProvider } from "./contexts/CartProvider";
 import { Cart } from './components/Cart/Cart';
-import { useState, useEffect } from 'react';
 import Checkout from "./components/Checkout/Checkout";
-
-
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
-  }, []);
-
-  const handleLogin = (token: string) => {
-    localStorage.setItem('token', token);
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-  };
-
   return (
-    <CartProvider>
-      <Router>
-        <NavBar handleLogout={handleLogout} isAuthenticated={isAuthenticated} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {isAuthenticated && (
-            <>
-              <Route path="/products" element={<ProductList />} />
-              <Route path="/products/:id" element={<Product />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/checkout" element={<Checkout />} />
-
-            </>
-          )}
-          {!isAuthenticated && (
-            <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
-          )}
-        </Routes>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<ProtectedRoute element={<ProductList />} />} />
+            <Route path="/products/:id" element={<ProtectedRoute element={<Product />} />} />
+            <Route path="/cart" element={<ProtectedRoute element={<Cart />} />} />
+            <Route path="/checkout" element={<ProtectedRoute element={<Checkout />} />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+          </Routes>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

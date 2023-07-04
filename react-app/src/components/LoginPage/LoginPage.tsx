@@ -1,29 +1,40 @@
+// LoginPage.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface User {
   username: string;
   password: string;
 }
 
-interface LoginPageProps {
-  handleLogin: (token: string) => void;
-}
-
-const LoginPage: React.FC<LoginPageProps> = ({ handleLogin }) => {
+const LoginPage: React.FC = () => {
   const [user, setUser] = useState<User>({ username: '', password: '' });
   const navigate = useNavigate();
+  
+  const { login } = useAuth();
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log(`Logging in with username: ${user.username} and password: ${user.password}`);
-    
 
-    handleLogin("dummy-token");
+    const response = await fetch('http://localhost:8000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: user.username, password: user.password })
+    });
 
-
-    navigate('/');
+    if (response.ok) {
+      const { token } = await response.json();
+      login(token);
+      navigate('/');
+    } else {
+      const error = await response.json();
+      console.error('Login error:', error);
+    }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

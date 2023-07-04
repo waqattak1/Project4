@@ -5,6 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "dev": "vite",
+    "start:client": "vite",
+    "start:server": "ts-node-dev --respawn --transpile-only server.ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

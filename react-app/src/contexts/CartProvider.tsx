@@ -25,16 +25,13 @@ export const CartProvider = (props: CartProverProps) => {
 
   const addToCart = (item: CartItem) => {
     setCart((currentCart) => {
-      // Find the item in the cart
       const itemInCart = currentCart.find((i) => i.title === item.title);
 
       if (itemInCart) {
-        // If item is in the cart, increase its quantity
         return currentCart.map((i) =>
           i.title === item.title ? { ...i, quantity: i.quantity + 1 } : i
         );
       } else {
-        // If item is not in the cart, add it
         return [...currentCart, { ...item, quantity: 1 }];
       }
     });
@@ -46,9 +43,13 @@ export const CartProvider = (props: CartProverProps) => {
     );
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, totalItems, totalPrice }}
+      value={{ cart, addToCart, removeFromCart, totalItems, totalPrice, clearCart }}
     >
       {props.children}
     </CartContext.Provider>

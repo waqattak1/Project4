@@ -1,16 +1,13 @@
+// NavBar.tsx
 import { Link } from "react-router-dom";
 import './NavBar.css'
 import React, { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-interface NavBarProps {
-  handleLogout: () => void;
-  isAuthenticated: boolean;
-}
-
-const NavBar: React.FC<NavBarProps> = ({ handleLogout, isAuthenticated }) => {
+const NavBar: React.FC = () => {
   const { cart } = useContext(CartContext);
-
+  const { isAuthenticated, logout } = useAuth();
 
   const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
@@ -29,14 +26,19 @@ const NavBar: React.FC<NavBarProps> = ({ handleLogout, isAuthenticated }) => {
               <Link to="/cart">Cart ({totalItems}) </Link>
             </li>
             <li className="logout">
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={logout}>Logout</button>
             </li>
           </>
         )}
         {!isAuthenticated && (
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Signup</Link> 
+            </li>
+          </>
         )}
       </ul>
     </nav>
