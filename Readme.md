@@ -8,6 +8,25 @@
 ### Main Page (Pre-login)
 ![Alt Text](react-app/src/assets/Readme_images/Main_Page.png)
 
+### Sign Up Page
+![Alt Text](react-app/src/assets/Readme_images/Signup_Page.png)
+
+### Login Page
+![Alt Text](react-app/src/assets/Readme_images/Login_Page.png)
+
+### Main Page (Post-login)
+![Alt Text](react-app/src/assets/Readme_images/Main_Page_Post_login.png)
+
+### Products Page
+![Alt Text](react-app/src/assets/Readme_images/Products_Page.png)
+
+### Cart Page
+![Alt Text](react-app/src/assets/Readme_images/Cart_Page.png)
+
+### Checkout Page
+![Alt Text](react-app/src/assets/Readme_images/Checkout_Page.png)
+
+
 
 ## Technologies used
 - Javascript
