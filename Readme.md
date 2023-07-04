@@ -26,12 +26,15 @@
 ### Checkout Page
 ![Alt Text](react-app/src/assets/Readme_images/Checkout_Page.png)
 
-
-
 ## Technologies used
 - Javascript
 - HTML
 - CSS
+- Typescript
+- Keyframes
+- MongoDB/Mongoose
+- Express
+- Node.js
 
 ## Getting started
 - link to deployed app: 
