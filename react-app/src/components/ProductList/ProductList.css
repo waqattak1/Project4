@@ -7,12 +7,22 @@
   }
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .product-list-container {
   animation: fadeIn 1s ease-in;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
+  background-color: white;
 }
 
 .product-list-container .product-item {
@@ -29,6 +39,10 @@
 .product-list-container .product-item:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.product-list-container .product-item.spinning {
+  animation: spin 2s linear;
 }
 
 .product-list-container .product-item img {

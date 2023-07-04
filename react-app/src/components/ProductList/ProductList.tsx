@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
 import { CartContext, CartItem } from '../../contexts/CartContext';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +16,7 @@ interface Product {
 function ProductList() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [addingToCart, setAddingToCart] = useState<number | null>(null);
   const { addToCart } = useContext(CartContext); 
 
   useEffect(() => {
@@ -41,6 +42,7 @@ function ProductList() {
   }
 
   const handleAddToCart = (product: Product) => {
+    setAddingToCart(product.id);
     addToCart({
       title: product.title,
       image: product.image,
@@ -52,11 +54,13 @@ function ProductList() {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 3000,
     });
+    setTimeout(() => setAddingToCart(null), 2000); 
   };
 
+
   const productElements = products.map((product) => (
-    <div key={product.id} className="product-item">
-      <Link to={`/products/${product.id}`}> {/* Wrap img and title with Link */}
+    <div key={product.id} className={`product-item ${product.id === addingToCart ? 'spinning' : ''}`}>
+      <Link to={`/products/${product.id}`}>
         <img src={product.image} alt={product.title} className="product-image" />
         <p>{product.title}</p>
       </Link>

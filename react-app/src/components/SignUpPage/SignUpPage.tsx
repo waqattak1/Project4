@@ -1,5 +1,7 @@
+// SignUp.tsx
 import React, { FC, useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SignUpPage.css'
 
 const SignUp: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -34,19 +36,21 @@ const SignUp: FC = () => {
   }
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} />
-        </label>
-        <input type="submit" value="Sign Up" />
-      </form>
+    <div className='sign-up-page'>
+      <div className='card'>
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Email:
+            <input type="email" value={email} onChange={handleEmailChange} />
+          </label>
+          <label>
+            Password:
+            <input type="password" value={password} onChange={handlePasswordChange} />
+          </label>
+          <input type="submit" value="Sign Up" />
+        </form>
+      </div>
     </div>
   );
 }

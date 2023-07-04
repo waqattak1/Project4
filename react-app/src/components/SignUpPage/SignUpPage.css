@@ -1,0 +1,52 @@
+/* SignUpPage.css */
+
+.sign-up-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #fafafa;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+    font-family: Arial, sans-serif;
+  }
+  
+  .card h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .card label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .card input[type="email"], .card input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .card input[type="submit"] {
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .card input[type="submit"]:hover {
+    background: #0056b3;
+  }
+  
