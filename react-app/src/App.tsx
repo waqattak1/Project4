@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import Checkout from "./components/Checkout/Checkout";
 
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 

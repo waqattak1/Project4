@@ -10,13 +10,6 @@
 - Javascript
 - HTML
 - CSS
-- Typescript
-- Keyframes
-- Render
-- node.js
-- Express
-- React 
-
 
 ## Getting started
 - link to deployed app: 
